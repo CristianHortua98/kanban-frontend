@@ -19,7 +19,7 @@ export class InicioComponent implements OnInit {
   loadItems(){
 
     let el = document.querySelectorAll('.items-card');
-    console.log(el);
+    // console.log(el);
 
     el.forEach(element => {
       let sortable = Sortable.create(element as HTMLElement, {

@@ -8,10 +8,15 @@ const routes: Routes = [
         path: '', 
         component: PagesComponent,
         children: [
-            { path: 'inicio', component: InicioComponent, data: {titulo: 'Inicio'}},
+            { path: 'inicio', component: InicioComponent, data: {title: 'Inicio'}},
             { path: '', redirectTo: 'inicio', pathMatch: 'full' },
-        ]
-    }
+        ],
+    },
+    {
+        path: '',
+        component: PagesComponent,
+        loadChildren: () => import('../users/users.module').then(m => m.UsersModule)
+    },
 ]
 
 @NgModule({
