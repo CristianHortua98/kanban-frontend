@@ -1,0 +1,64 @@
+<div class="row animate fadeIn fast">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-8">
+                        <h4 class="card-title">Users - Total Users ({{ countUsers }})</h4>
+                        <h6 class="card-subtitle">Registered Users in the application</h6>
+                    </div>
+                    <div class="col">
+                        <div class="text-right">
+                            <!-- <a class="btn btn-info" [routerLink]="['./new']"><i class="fa fa-user-plus"></i> Add User</a> -->
+                            <a class="btn btn-info" routerLink="/cas-kanban/users/new"><i class="fa fa-user-plus"></i> Add User</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Fullname</th>
+                                <th>Document</th>
+                                <th>Phone</th>
+                                <th>Username</th>
+                                <th>Email</th>
+                                <th>Roles</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (user of users; track $index) {
+                                <tr>
+                                    <td>{{ user.id }}</td>
+                                    <td>{{ user.fullname }}</td>
+                                    <td>{{ user.document }}</td>
+                                    <td>{{ user.phone }}</td>
+                                    <td>{{ user.username }}</td>
+                                    <td>{{ user.email }}</td>
+                                    <td>
+                                        @for (rol of user.roles; track $index) {
+
+                                            <span class="label label-success">{{ rol.name_rol }}</span><br>
+
+                                        }
+                                    </td>
+                                    <td>
+                                        <div class="btn-group btn-group-sm" role="group" aria-label="Buttons Users">
+                                            <a class="btn btn-outline-info btn-xs" [routerLink]="['/cas-kanban/users', user.id]"><i class="fa fa-pencil-square-o"></i></a>
+                                            <a class="btn btn-outline-danger btn-xs" (click)="desactiveUser(user)"><i class="fa  fa-trash-o"></i></a>
+                                            <!-- <button type="button" class="btn btn-outline-success btn-xs"><i class="fa fa-fast-forward"></i></button> -->
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

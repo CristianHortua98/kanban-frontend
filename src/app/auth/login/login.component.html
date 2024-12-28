@@ -1,0 +1,32 @@
+<section id="wrapper">
+    <div class="login-register" style="background-image:url(./assets/images/background/login-register.jpg);">
+        <div class="login-box card">
+            <div class="card-body">
+                <form class="form-horizontal form-material" id="loginform" autocomplete="off" [formGroup]="loginForm" (ngSubmit)="login()">
+                    <h3 class="box-title m-b-20">Sign In</h3>
+                    <div class="form-group ">
+                        <div class="col-xs-12">
+                            <input class="form-control" type="text" required="" placeholder="Username" formControlName="username"> 
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <input class="form-control" type="password" required="" placeholder="Password" formControlName="password"> 
+                        </div>
+                    </div>
+                    <div class="form-group text-center">
+                        <div class="col-xs-12 p-b-20">
+                            <button class="btn btn-block btn-lg btn-info btn-rounded" type="submit">Log In</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-danger">
+                            <p *ngIf="fieldNoValid('username')">* Username is required</p>
+                            <p *ngIf="fieldNoValid('password')">* Password is required</p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

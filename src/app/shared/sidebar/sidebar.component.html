@@ -1,0 +1,50 @@
+<aside class="left-sidebar">
+    <!-- Sidebar scroll-->
+    <div class="scroll-sidebar ps ps--theme_default ps--active-y" data-ps-id="8e2abba7-5283-44e0-5325-251b195dc21d">
+        <!-- Sidebar navigation-->
+        <nav class="sidebar-nav active">
+            <ul id="sidebarnav" class="in">
+                <li class="user-profile"> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><span class="hide-menu">{{ user().fullname | slice:0:15}}</span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="javascript:void()">My Profile </a></li>
+                        <li><a (click)="logout()" class="cursor">Logout</a></li>
+                    </ul>
+                </li>
+                <li class="nav-devider"></li>
+                <li class="nav-small-cap">PERSONAL</li>
+                @for (item of filteredMenu; track $index) {
+
+                    <li>
+                        <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
+                            <i [class]="item.icono"></i>
+                            <span class="hide-menu">{{ item.titulo }}<span class="label label-rouded label-themecolor pull-right">{{item.submenu.length}}</span></span>
+                        </a>
+                        <ul aria-expanded="false" class="collapse">
+                            @for (subMenu of item.submenu; track $index) {
+
+                                <li><a [routerLink]="subMenu.url" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">{{ subMenu.titulo }}</a></li>
+                                
+                            }
+                        </ul>
+
+                    </li>
+
+                }
+                <!-- <li> 
+                    <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
+                        <i class="mdi mdi-gauge"></i>
+                        <span class="hide-menu">Dashboard <span class="label label-rouded label-themecolor pull-right">4</span></span>
+                    </a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="index.html">Minimal </a></li>
+                        <li><a href="index2.html">Analytical</a></li>
+                        <li><a href="index3.html">Demographical</a></li>
+                        <li><a href="index4.html">Modern</a></li>
+                    </ul>
+                </li> -->
+            </ul>
+        </nav>
+        <!-- End Sidebar navigation -->
+    <div class="ps__scrollbar-x-rail" style="left: 0px; bottom: 0px;"><div class="ps__scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__scrollbar-y-rail" style="top: 0px; height: 771px; right: 0px;"><div class="ps__scrollbar-y" tabindex="0" style="top: 0px; height: 612px;"></div></div></div>
+    <!-- End Sidebar scroll-->
+</aside>
