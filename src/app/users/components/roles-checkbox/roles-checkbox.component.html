@@ -1,0 +1,8 @@
+@for (rol of roles; track $index) {
+    <div>
+        <input type="checkbox" class="filled-in chk-col-light-blue" id="rol_{{rol.id}}" [value]="rol.id" 
+            [checked]="selectedRoles.includes(rol.id)" 
+            (change)="toggleRole(rol.id, $event.currentTarget['checked'])">
+        <label [for]="'rol_' + rol.id">{{rol.name_rol}}</label>
+    </div>
+}

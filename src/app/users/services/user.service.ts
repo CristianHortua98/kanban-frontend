@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { environments } from '../../../environments/environments';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../../auth/interfaces/user.interface';
+import { UserCreateForm } from '../interfaces/user-create-form.interface';
+import { UserUpdateForm } from '../interfaces/user-update-form.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -22,19 +24,23 @@ export class UserService {
 
   }
 
-  updateUser(id: number, user: User){
+  updateUser(id: number, user: UserUpdateForm){
+
+    const {password2, ...userData} = user;
 
     const url = `${this.baseUrl}/users/${id}`;
 
-    return this.http.patch(url, user);
+    return this.http.patch(url, userData);
 
   }
 
-  createUser(user: User){
+  createUser(user: UserCreateForm){
+
+    const { password2, ...userData } = user;
 
     const url = `${this.baseUrl}/users`;
 
-    return this.http.post(url, user);
+    return this.http.post(url, userData);
 
   }
 

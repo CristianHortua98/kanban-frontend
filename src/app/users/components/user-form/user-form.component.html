@@ -4,61 +4,80 @@
             <div class="card-body">
                 <form class="form-material" [formGroup]="userForm" (submit)="saveUser()">
                     <div class="d-flex no-block mb-4">
-                        <h4 class="card-title">User</h4>
+                        <h4 class="card-title">
+                            @if (userSelected) {
+                                Updated: {{ userSelected.fullname }}
+                            }@else {
+                                Register User
+                            }
+                        </h4>
                         <div class="ml-auto">
                             <button class="pull-right btn btn-rounded btn btn-info" [disabled]="userForm.invalid"><i class="fa fa-save"></i> Save User</button>
+                            <!-- <button class="pull-right btn btn-rounded btn btn-info"><i class="fa fa-save"></i> Save User</button> -->
                         </div>
                     </div>
+                    <hr>
                     <div class="row">
                         <div class="col-sm-12 col-md-6 col-lg-6">
                             <div class="form-group">
                                 <label for="fullname">Fullname</label>
                                 <input type="text" class="form-control" id="fullname" formControlName="fullname" placeholder="Fullname">
+                                <p class="text-danger" *ngIf="fieldNoValid('fullname')">* Fullname is required</p>
                             </div>
                             <div class="form-group">
                                 <label for="username">Username</label>
                                 <input type="text" class="form-control" id="username" formControlName="username" placeholder="Username">
+                                <p class="text-danger" *ngIf="fieldNoValid('username')">* Username is required</p>
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
                                 <input type="email" class="form-control" id="email" formControlName="email" placeholder="Email">
+                                <p class="text-danger" *ngIf="fieldNoValid('email')">* Email is mandatory and must be in a valid format.</p>
                             </div>
-                            <!-- <div class="form-group">
+                            <div class="form-group" formArrayName="roles">
                                 <label>Roles</label>
-                                <select class="form-control" name="rolesUser[]" style="width: 100%;" formControlName="roles" placeholder="Rol" aria-hidden="true" multiple>
-                                    @for (rol of roles; track $index) {
-                                        <option [value]="rol.id">{{rol.name_rol}}</option>
-                                    }
-                                </select>
-                            </div> -->
+                                <app-roles-checkbox [roles]="roles" [selectedRoles]="rolesSelectedUser" (rolesChanged)="onRolesChanged($event)"></app-roles-checkbox>
+                                <p class="text-danger" *ngIf="rolesNoValid()">* Rol is required.</p>
+                                <!-- <div *ngFor="let role of roles; let i = index">
+                                  <input type="checkbox" [id]="'role_' + role.id" [value]="role.id" [checked]="userForm.get('roles').value.includes(role.id)" (change)="onChangeCheckbox(role, $event)">
+                                  <label [for]="'role_' + role.id">{{ role.name_rol }}</label>
+                                </div> -->
+                                <!-- @for (rol of roles; track $index) {
+                                    <div>
+                                        <input type="checkbox" id="rol_{{rol.id}}" [value]="rol.id" [checked]="userForm.get('roles').value.includes(rol.id)" (change)="onChangeCheckbox(rol, $event)" class="filled-in chk-col-light-blue">
+                                        <label [for]="'rol_' + rol.id">{{rol.name_rol}}</label>
+                                    </div>
+                                } -->
+                            </div>
                         </div>
                         <div class="col-sm-12 col-md-6 col-lg-6">
                             <div class="form-group">
                                 <label for="document">Document</label>
                                 <input type="number" class="form-control" id="document" formControlName="document" placeholder="Document">
+                                <p class="text-danger" *ngIf="fieldNoValid('document')">* Document is required.</p>
                             </div>
-                            <div class="form-group">
-                                <label for="password">Password</label>
-                                <input type="password" class="form-control" id="password" formControlName="password" placeholder="Password">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                        <label for="password">Password</label>
+                                        <input type="password" class="form-control" id="password" formControlName="password" placeholder="Password">
+                                        <p class="text-danger" *ngIf="fieldNoValid('password')">* Password is required.</p>
+                                        <p class="text-danger" *ngIf="passwordNoValid()">* Passwords must be the same.</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                        <label for="password">Confirm Password</label>
+                                        <input type="password" class="form-control" id="password2" formControlName="password2" placeholder="Confirm Password">
+                                        <p class="text-danger" *ngIf="fieldNoValid('password2')">* Confirm Password is required.</p>
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="phone">Phone</label>
                                 <input type="number" class="form-control" id="phone" formControlName="phone" placeholder="Phone">
+                                <p class="text-danger" *ngIf="fieldNoValid('phone')">* Phone is required.</p>
                             </div>
-                            <div class="form-group" formArrayName="roles">
-                                <label>Roles</label>
-                                <!-- <div *ngFor="let role of roles; let i = index">
-                                  <input type="checkbox" [id]="'role_' + role.id" [value]="role.id" [checked]="userForm.get('roles').value.includes(role.id)" (change)="onChangeCheckbox(role, $event)">
-                                  <label [for]="'role_' + role.id">{{ role.name_rol }}</label>
-                                </div> -->
-                                @for (rol of roles; track $index) {
-                                    <div>
-                                        <input type="checkbox" id="rol_{{rol.id}}" [value]="rol.id" [checked]="userForm.get('roles').value.includes(rol.id)" (change)="onChangeCheckbox(rol, $event)" class="filled-in chk-col-light-blue">
-                                        <label [for]="'rol_' + rol.id">{{rol.name_rol}}</label>
-                                    </div>
-                                }
-                            </div>
-                              
                         </div>
                     </div>
                 </form>
