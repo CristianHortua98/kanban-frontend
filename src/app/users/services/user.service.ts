@@ -16,6 +16,14 @@ export class UserService {
     private http: HttpClient
   ){}
 
+  listCollaborators(idUser: number){
+
+    const url = `${this.baseUrl}/users/all-collaborators/${idUser}`;
+
+    return this.http.get(url);
+
+  }
+
   desactiveUser(id: number){
 
     const url = `${this.baseUrl}/users/desactive-user/${id}`;
