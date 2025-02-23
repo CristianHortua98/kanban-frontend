@@ -1,0 +1,33 @@
+<div class="row animate fadeIn fast">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+        <div class="card">
+            <div class="card-body p-b-0">
+                <h4 class="card-title">Board Tasks: <b>{{ project?.name }}</b> - Total Tasks: ({{ taskService.tasks().length }})</h4>
+                <h6 class="card-subtitle">Collaborators:
+                    @if (project?.collaborators.length > 0) {
+                        @for (collaborator of project?.collaborators; track $index) {
+                            <span class="label label-info m-1">{{ collaborator.fullname }}</span>
+                        }
+                    }@else {
+                        <code>Not Collaborators</code>
+                    } 
+                </h6> 
+            </div>
+            <ul class="nav nav-tabs customtab" role="tablist">
+                <li class="nav-item" (click)="activeNavTab($event)"> <a class="nav-link active" data-toggle="tab" href="#board" role="tab"><span class="hidden-sm-up"><i class="ti-home"></i></span> <span class="hidden-xs-down">Board</span></a> </li>
+                <li class="nav-item" (click)="activeNavTab($event)"> <a class="nav-link" data-toggle="tab" href="#list" role="tab"><span class="hidden-sm-up"><i class="ti-user"></i></span> <span class="hidden-xs-down">List</span></a> </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="board" role="tabpanel" aria-expanded="true">
+                    <div class="p-20">
+                        <app-board-column [project]="project" [collaboratorsProject]="project?.collaborators"></app-board-column>
+                    </div>
+                </div>
+                <div class="tab-pane p-20" id="list" role="tabpanel" aria-expanded="false">
+                    <task-table-task [idProject]="projectId"></task-table-task>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

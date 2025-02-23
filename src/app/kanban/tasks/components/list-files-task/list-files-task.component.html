@@ -1,0 +1,9 @@
+@if (filesTask?.length > 0) {
+    <div class="col-sm-12 col-md-12 col-lg-12">
+        <ul class="list-group">
+            @for (file of filesTask; track $index) {
+                <li class="list-group-item"><a [href]="file" target="_blank">Archivo {{ $index + 1 }}</a></li>
+            }
+        </ul>
+    </div>
+}

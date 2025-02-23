@@ -1,0 +1,41 @@
+<div class="table-responsive">
+    <table class="table table-hover table-bordered">
+        <thead class="bg-info text-white">
+            <tr>
+            @for (column of columnsTask; track $index) {
+                <th>{{ column.label }}</th>
+            }
+            </tr>
+        </thead>
+        <tbody>
+            @for (task of taskService.tasksPaginates(); track $index) {
+                <tr (click)="openModal(task)">
+                    <td>{{ task.id }}</td>
+                    <td>{{ task.project_id.name }}</td>
+                    <td>{{ task.project_id.code }}</td>
+                    <td>{{ task.title }}</td>
+                    <td>{{ task.user_assigned?.fullname }}</td>
+                    <td>{{ task.create_at | date:'dd/MM/yyyy HH:mm' }}</td>
+                    <td>{{ task.update_at | date:'dd/MM/yyyy HH:mm'}}</td>
+                    <td>
+
+                        @if (task.status === 'PENDING') {
+                            <span class="label label-warning label-rounded">{{ task.status }}</span>
+                        }@else if (task.status === 'IN_PROGRESS') {
+                            <span class="label label-info label-rounded">{{ task.status }}</span>
+                        }@else {
+                            <span class="label label-success label-rounded">{{ task.status }}</span>
+                        }
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    
+    @if (taskService.tasks().length > 10) {
+        <button class="btn waves-effect waves-light btn-rounded btn-outline-info m-1" (click)="changePage(-10)">Previous</button>
+        &nbsp;
+        <button class="btn waves-effect waves-light btn-rounded btn-outline-info m-1" (click)="changePage(10)">Next</button>
+    }
+</div>

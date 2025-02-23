@@ -1,0 +1,35 @@
+<div class="row">
+    @for (column of columnsBoard; track $index) {
+        <div class="col-md-3">
+            <div class="card {{ column.cardHeaderBg }} card-shadow">
+                <div class="card-header">
+                    <h4 class="m-b-0 text-white">{{ column.title }}</h4>
+                </div>
+                <div class="card-body card-height-column">
+                    <div class="items-card-{{column.status}} item-card-height {{ column.cardNameClass }}" [attr.data-card-status]="column.status">
+                        @for (task of getLimitedTasks(taskService.tasks(), column.status); track $index) {
+                            @if (task.status === column.status) {
+                                <app-card-task [project]="project" [task]="task" [collaboratorsProject]="collaboratorsProject" [attr.data-task-id]="task.id"></app-card-task>
+                            }
+                        }
+                    </div>
+                </div>
+                <div class="card-footer text-center">
+                    @if (column.showCreateTask) {
+                        <form [formGroup]="taskForm" (ngSubmit)="createTask(column)">
+                            <div class="card card-create-task">
+                                <div class="card-body">
+                                    <textarea class="form-control" formControlName="title" rows="3" name="title" id="title" placeholder="Title Task"></textarea>
+                                    <button class="btn btn-outline-danger btn-sm m-1" (click)="toggleCreateTask(column)"><i class="fa fa-times"></i></button>
+                                    <button class="btn btn-success btn-sm" [disabled]="taskForm.invalid">Save</button>
+                                </div>
+                            </div>
+                        </form>
+                    }
+                    <button class="btn btn-outline-secondary btn-block" (click)="toggleCreateTask(column)"><i class="fa fa-plus"></i> Add Task</button>
+                </div>
+            </div>
+        </div>
+
+    }
+</div>

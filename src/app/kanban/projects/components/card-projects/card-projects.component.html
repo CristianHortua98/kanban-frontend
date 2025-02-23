@@ -1,0 +1,17 @@
+<div class="card card-shadow-project">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <img class="img-fluid h-100" src="./assets/images/projects/main.jpg" alt="..." />
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h4 class="card-title">{{ project.name }} - {{ project.code }}</h4>
+                <a type="button" class="btn waves-effect waves-light btn-outline-info btn-sm m-1" [routerLink]="['/cas-kanban/board', project.id]">Ingresar <i class="fa fa-arrow-right"></i></a>
+                @if(userSesion().id === project.user_created.id){
+                    <a class="btn waves-effect waves-light btn-outline-success btn-sm" [routerLink]="['/cas-kanban/project/add-collaborators', project.id]" title="Add Collaborators"><i class="fa fa-plus-square-o"></i></a>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+            

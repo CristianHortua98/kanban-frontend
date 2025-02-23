@@ -1,0 +1,56 @@
+<div class="fondo-modal-image animated fadeIn fast" [class.oculto]="modalTaskService.hiddenModal">
+    <div class="modal fade show" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" style="display: block; padding-right: 17px;">
+        <div class="modal-dialog modal-lg" role="document">
+            <form [formGroup]="taskForm" (submit)="changeTask()">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-3 mb-3">
+                                Code: <span class="label label-info label-rounded">{{ modalTaskService.currentTask?.project_id?.code }}-{{ modalTaskService.currentTask?.id }}</span>
+                            </div>
+                            <div class="col-3 mb-3">
+                                Status:
+                                @if (modalTaskService.currentTask?.status === 'PENDING') {
+                                    <span class="label label-warning label-rounded">PENDING</span>
+                                }@else if (modalTaskService.currentTask?.status === 'IN_PROGRESS') {
+                                    <span class="label label-info label-rounded">IN PROCESS</span>
+                                }@else {
+                                    <span class="label label-success label-rounded">DONE</span>
+                                }
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-12">
+                                <div class="form-group">
+                                    <label for="title">Title</label>
+                                    <input type="text" class="form-control" id="title" formControlName="title" placeholder="Title Task">
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-lg-12">
+                                <div class="form-group">
+                                    <label for="description">Description</label>
+                                    <div id="summernote"></div>
+                                    <textarea hidden class="form-control" formControlName="description" rows="10"></textarea>
+                                    <!-- <ckeditor *ngIf="( Editor && config )" data="" formControlName="description" [editor]="Editor" [config]="config" style="height: 300px;"></ckeditor> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-12">
+                                <label for="files">Files</label>
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <input type="file" class="dropify" data-allowed-file-extensions="pdf" data-height="100" (change)="onFileChange($event)" multiple>
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <kanban-list-files-task [filesTask]="filesTask"></kanban-list-files-task>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="closeModal()">Cancel</button>
+                        <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Save Task</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

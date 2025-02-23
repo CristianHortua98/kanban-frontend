@@ -1,0 +1,20 @@
+<button type="button" class="btn btn-secondary btn-circle btn-sm dropdown-toggle dropdown-toggle-split" [title]="getButtonTitle(task)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+<div class="dropdown-menu animated fadeIn" x-placement="bottom-start">
+    <div class="dropdown-item">
+        <small>Assigned User</small>
+    </div>
+    <div class="dropdown-item cursor" [ngClass]="{'active':task.user_assigned && task.user_assigned.id === userSesion().id}" (click)="assignedCollaborator(task.id, userSesion())">
+        {{ userSesion().fullname }}
+    </div>
+    @for (collaborator of collaboratorsProject; track $index) {
+        @if (task.user_assigned && task.user_assigned.id === collaborator.id) {
+            <div class="dropdown-item active cursor">
+                {{ collaborator.fullname }}
+            </div>
+        }@else{
+            <div class="dropdown-item cursor" (click)="assignedCollaborator(task.id, collaborator)">
+                {{ collaborator.fullname }}
+            </div>
+        }
+    }
+</div>

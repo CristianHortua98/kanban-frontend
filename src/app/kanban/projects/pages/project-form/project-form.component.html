@@ -1,0 +1,32 @@
+<div class="row animate fadeIn fast">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <form class="form-material" [formGroup]="projectForm" (submit)="saveProject()">
+                    <div class="d-flex no-block mb-4">
+                        <h4 class="card-title">
+                            New Project
+                        </h4>
+                        <div class="ml-auto">
+                            <button class="pull-right btn btn-rounded btn btn-info" [disabled]="projectForm.invalid"><i class="fa fa-save"></i> Save Project</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" id="name" formControlName="name" placeholder="Name Project">
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <label for="name">Code</label>
+                                <input type="text" class="form-control" id="code" formControlName="code" placeholder="Code Project">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

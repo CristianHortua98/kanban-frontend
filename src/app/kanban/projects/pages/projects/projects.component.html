@@ -1,0 +1,47 @@
+<div class="row animate fadeIn fast">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-8">
+                        <h4 class="card-title">My Projects</h4>
+                        <h6 class="card-subtitle">Registered Projects in the application</h6>
+                    </div>
+                    <div class="col">
+                        <div class="text-right">
+                            <!-- <a class="btn btn-info" [routerLink]="['./new']"><i class="fa fa-user-plus"></i> Add User</a> -->
+                            <a class="btn btn-info mb-2" routerLink="/cas-kanban/projects/new"><i class="fa fa-plus-square"></i> Add Project</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row animate fadeIn fast">
+                    @for (project of projects; track $index) {
+                        <div class="col-sm-12 col-md-3 col-lg-3">
+                            <app-card-projects [project]="project"></app-card-projects>
+                        </div>
+                    }
+                </div>
+
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-8">
+                        <h4 class="card-title">Collaborator Projects</h4>
+                    </div>
+                </div>
+                <div class="row animate fadeIn fast">
+                    @for (projectC of projectsCollaborator; track $index) {
+                        <div class="col-sm-12 col-md-3 col-lg-3">
+                            <app-card-projects [project]="projectC"></app-card-projects>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

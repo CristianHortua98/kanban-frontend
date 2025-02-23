@@ -1,0 +1,8 @@
+@for (user of users; track $index) {
+    <div>
+        <input type="checkbox" class="filled-in chk-col-light-blue" id="user_{{user.id}}" [value]="user.id" 
+            [checked]="selectedUsers.includes(user.id)" 
+            (change)="toggleRole(user.id, $event.currentTarget['checked'])">
+        <label [for]="'user_' + user.id">{{user.fullname}}</label>
+    </div>
+}
