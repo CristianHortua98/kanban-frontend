@@ -25,7 +25,6 @@ export class SidebarComponent {
         // { "titulo": "All Projects", "url": "all-projects" },
         // { "titulo": "Add Project", "url": "add-project" },
         { "titulo": "My Projects", "url": "projects" },
-        { "titulo": "Collaborator Projects", "url": "collaborator-projects" }
       ],
       "visibleFor": ["COORDINADOR","USUARIO"]
     },

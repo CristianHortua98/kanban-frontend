@@ -4,6 +4,8 @@ import { BreadcumbsComponent } from './breadcumbs/breadcumbs.component';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { RouterModule } from '@angular/router';
+import { KanbanModule } from '../kanban/kanban.module';
+import { TimeAgoPipe } from './pipes/time-ago.pipe';
 
 
 
@@ -11,11 +13,12 @@ import { RouterModule } from '@angular/router';
   declarations: [
     BreadcumbsComponent,
     HeaderComponent,
-    SidebarComponent
+    SidebarComponent,
+    TimeAgoPipe
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
   ],
   exports: [
     HeaderComponent,
