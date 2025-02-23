@@ -17,6 +17,11 @@ const routes: Routes = [
         component: PagesComponent,
         loadChildren: () => import('../users/users.module').then(m => m.UsersModule)
     },
+    {
+        path: '',
+        component: PagesComponent,
+        loadChildren: () => import('../kanban/kanban.module').then(m => m.KanbanModule)
+    }
 ]
 
 @NgModule({

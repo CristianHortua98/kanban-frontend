@@ -5,6 +5,8 @@ import { InicioComponent } from './inicio/inicio.component';
 import { PagesComponent } from './pages.component';
 import { SharedModule } from '../shared/shared.module';
 import { PagesRoutingModule } from './pages.routing';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { KanbanModule } from '../kanban/kanban.module';
 
 
 
@@ -17,7 +19,8 @@ import { PagesRoutingModule } from './pages.routing';
   imports: [
     CommonModule,
     SharedModule,
-    PagesRoutingModule
+    PagesRoutingModule,
+    KanbanModule
   ]
 })
 export class PagesModule { }
