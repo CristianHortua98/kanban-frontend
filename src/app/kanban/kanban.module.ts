@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { KanbanRoutingModule } from './kanban.routing';
 import { RouterModule } from '@angular/router';
 import { ProjectsComponent } from './projects/pages/projects/projects.component';
@@ -17,6 +17,7 @@ import { LimitTaskPipePipe } from './tasks/pipes/limit-task-pipe.pipe';
 import { ModalTaskComponent } from './tasks/components/modal-task/modal-task.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { ListFilesTaskComponent } from './tasks/components/list-files-task/list-files-task.component';
+import { CommentFieldComponent } from './tasks/components/comment-field/comment-field.component';
 
 
 
@@ -35,12 +36,16 @@ import { ListFilesTaskComponent } from './tasks/components/list-files-task/list-
     LimitTaskPipePipe,
     ModalTaskComponent,
     ListFilesTaskComponent,
+    CommentFieldComponent,
   ],
   imports: [
     CommonModule,
     KanbanRoutingModule,
     ReactiveFormsModule,
     FormsModule
+  ],
+  providers: [
+    DatePipe
   ],
   exports: [
     ModalTaskComponent

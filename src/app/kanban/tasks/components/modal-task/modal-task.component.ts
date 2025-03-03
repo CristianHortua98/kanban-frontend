@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, computed, OnInit } from '@angular/core';
 import { ModalTaskService } from '../../../services/modal-task.service';
 import { CKEditorCloudResult, loadCKEditorCloud } from '@ckeditor/ckeditor5-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -7,6 +7,8 @@ import { environments } from '../../../../../environments/environments';
 import { UploadsService } from '../../../services/uploads.service';
 import { TaskService } from '../../../services/task.service';
 import { Task } from '../../interfaces/task.interface';
+import { CommentsService } from '../../../services/comments.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 declare var $: any;
 
@@ -22,13 +24,16 @@ export class ModalTaskComponent implements OnInit{
   public selectedTask: Subscription;
   public formSubmitted = true;
   public filesTask: string[];
+  public comments = computed(() => this.commentsService.commentsTask());
   
   constructor(
     private fb: FormBuilder,
     public modalTaskService: ModalTaskService,
     private uploadsService: UploadsService,
-    private taskService: TaskService
-  ){ }
+    private taskService: TaskService,
+    private commentsService: CommentsService,
+    private sanitizer: DomSanitizer
+  ){}
 
   ngOnInit(): void {
 
@@ -47,6 +52,7 @@ export class ModalTaskComponent implements OnInit{
     this.loadSummernote();
     this.loadDropyfy();
     this.loadFilesTask(id);
+    this.commentsService.loadCommentTask(id);
 
   }
 
@@ -173,4 +179,10 @@ export class ModalTaskComponent implements OnInit{
       })
 
   }
+
+  sanitizeHtml(content: string){
+    return this.sanitizer.bypassSecurityTrustHtml(content);
+  }
+
+
 }

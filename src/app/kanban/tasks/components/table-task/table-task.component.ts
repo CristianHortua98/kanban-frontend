@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { TaskService } from '../../../services/task.service';
 import { Task } from '../../interfaces/task.interface';
 import { ModalTaskService } from '../../../services/modal-task.service';
+import { ExcelService } from '../../../services/excel.service';
 
 @Component({
   selector: 'task-table-task',
@@ -26,13 +27,18 @@ export class TableTaskComponent implements OnInit{
 
   constructor(
     public taskService: TaskService,
-    private modalTaskService: ModalTaskService
+    private modalTaskService: ModalTaskService,
+    private excelService: ExcelService
   ){}
 
 
   ngOnInit(): void {
 
     this.loadTask();
+  }
+
+  downloadExcel(){
+    this.excelService.generateExcel();
   }
 
   loadTask(){

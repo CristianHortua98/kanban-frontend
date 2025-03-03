@@ -1,0 +1,5 @@
+<form [formGroup]="commentForm" (submit)="addComment()">
+    <div id="summernote-comment"></div>
+    <textarea hidden class="form-control" formControlName="message" rows="1"></textarea>
+    <button class="btn btn-success mt-2"><i class="fa fa-save"></i> Save Comment</button>
+</form>

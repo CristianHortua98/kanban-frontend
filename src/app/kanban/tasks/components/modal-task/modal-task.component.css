@@ -4,6 +4,13 @@
 
 }
 
+
+.modal{
+
+    overflow: auto !important;
+
+}
+
 .fondo-modal-image{
 
     background-color: rgba(0, 0, 0, 0.4);
